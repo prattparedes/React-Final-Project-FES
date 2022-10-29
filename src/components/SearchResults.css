@@ -1,0 +1,26 @@
+.SearchResults {
+    padding: 32px 40px 0px 40px;
+}
+
+.search__filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.search__text {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#filter {
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.recipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
