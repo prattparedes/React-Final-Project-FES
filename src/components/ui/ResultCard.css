@@ -55,6 +55,7 @@
 .resultCard__description > h2 {
     margin-top: 8px;
     margin-bottom: 8px;
+    max-width: 300px;
 }
 
 .resultCard__description > h3 {

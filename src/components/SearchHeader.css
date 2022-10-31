@@ -52,6 +52,11 @@
     transition: all 300ms ease !important;
 }
 
+.search__btn {
+    border: none;
+    background: none;
+}
+
 .searchHeader__icon:hover {
     color: var(--font-color);
 }
