@@ -15,6 +15,16 @@ function RecipeDescription() {
             <ArrowBackIcon />
             <h2>Search Recipes</h2>
           </div>
+          <div className="recipeDescription__selected">
+            <figure className="recipe__image">
+                <img src='https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg' alt="" />
+            </figure>
+            <div className="recipeDescription__description">
+                <h2 className="recipeDescription__title">
+                    Título
+                </h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>
