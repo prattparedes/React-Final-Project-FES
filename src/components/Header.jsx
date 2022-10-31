@@ -3,28 +3,32 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderImg from "../assets/HomeImg.svg";
 import BuffetImg from "../assets/buffet.jpg";
-import TruckImg from "../assets/camion.png"
+import TruckImg from "../assets/camion.png";
 import { useNavigate } from "react-router-dom";
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 
 function Header() {
   const navigate = useNavigate();
   const [searchedItem, setSearchedItem] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchedItem);
+
     let headerImgEl = document.querySelector(".header__img--wrapper");
-    headerImgEl.classList += " submitted"
+    headerImgEl.classList += " submitted";
+    setLoading(true);
+    localStorage.setItem("firstSearch", searchedItem)
+
     setTimeout(() => {
-        navigate('/search')
-    }, 1200)
-    
+      navigate("/search");
+    }, 1200);
   };
 
   function inputClick() {
     let headerImgEl = document.querySelector(".header__img--wrapper");
-    if (headerImgEl.classList == 'header__img--wrapper clicked') {
-        headerImgEl.classList.remove('clicked')
+    if (headerImgEl.classList == "header__img--wrapper clicked") {
+      headerImgEl.classList.remove("clicked");
     }
     headerImgEl.classList += " clicked";
   }
@@ -51,7 +55,11 @@ function Header() {
               className="header__btn btn__hover-effect click"
               onClick={handleSubmit}
             >
-              <SearchIcon className="input__icon" />
+              {loading ? (
+                <RotateLeftIcon className="input__icon loading" />
+              ) : (
+                <SearchIcon className="input__icon" />
+              )}
             </button>
           </form>
         </div>

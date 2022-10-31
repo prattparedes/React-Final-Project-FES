@@ -177,10 +177,26 @@ header {
     position: absolute;
     object-fit: contain;
     bottom: 30px;
+    opacity: 0;
     transform: translateX(-150%);
-    transition: all 3000ms ease;
+    transition: transform 3000ms ease, opacity 800ms ease;
 }
 
 .submitted .header__truckImg {
     transform: translateX(150%);
+    opacity: 1;
+}
+
+.loading {
+    animation: rotate 500ms infinite linear;
+    font-size: 56px !important;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
 }

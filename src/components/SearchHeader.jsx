@@ -6,12 +6,10 @@ import Background from "../assets/backgroundimg.jpg";
 function SearchHeader({ getRecipes, setSearchData }) {
   const [searchChild, setSearchChild] = useState("");
 
-  const searchHandler = (e) => {
+  async function searchHandler(e) {
     e.preventDefault();
-    console.log("searched" + searchChild);
-    setSearchData(searchChild);
-    getRecipes(searchChild);
-  };
+    setSearchData(searchChild)
+  }
 
   return (
     <div className="searchHeader">
@@ -20,7 +18,7 @@ function SearchHeader({ getRecipes, setSearchData }) {
         <form className="searchHeader__searchInput">
           <input
             type="text"
-            placeholder="Search for Recipes by Name"
+            placeholder="Search for Recipes by Name or Ingredient"
             className="searchHeader__input"
             onChange={(e) => setSearchChild(e.target.value)}
           />

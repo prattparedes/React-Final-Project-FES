@@ -23,13 +23,18 @@ function RecipeDescription({ recipe }) {
     return url[2] !== undefined ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
   }
 
+  function handleBack() {
+    navigate("/search")
+    localStorage.setItem("firstSearch", 'chicken')
+  }
+
   return (
     <div className="recipeDescription">
       <div className="recipeDescription__container">
         <div className="row">
           <div
             className="recipeDescription__top"
-            onClick={() => navigate("/search")}
+            onClick={handleBack}
           >
             <ArrowBackIcon />
             <h2>Search Recipes</h2>
