@@ -16,6 +16,7 @@ function Search() {
 
     setRecipes(data.meals);
     setLoading(false);
+    console.log(data.meals)
   }
 
   useEffect(() => {

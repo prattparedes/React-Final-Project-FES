@@ -43,6 +43,7 @@ function SearchResults({ recipes, loading }) {
                 area={post.strArea}
                 tags={post.strTags}
                 image={post.strMealThumb}
+                id={post.idMeal}
               />
             ))
             .slice(0, 6)

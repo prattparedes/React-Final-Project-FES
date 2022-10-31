@@ -1,10 +1,13 @@
 import React from "react";
 import "./ResultCard.css";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { useNavigate } from "react-router-dom";
 
-function ResultCard({ title, category, area, tags, image }) {
+function ResultCard({ title, category, area, tags, image, id }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="resultCard">
+    <div className="resultCard" onClick={() => navigate(`/${id}`)}>
       <div className="resultCard__container">
         <div className="resultCard__img--wrapper">
           <img

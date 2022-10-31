@@ -1,9 +1,30 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Recipe() {
+  const [recipe, setRecipe] = useState({});
+  const { id } = useParams();
+  console.log(id);
+
+  async function getMealData() {
+    const { data } = await axios.get(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+    );
+    setRecipe(data);
+    console.log(data);
+  }
+
+  useEffect(() => {
+    getMealData();
+  }, []);
+
   return (
-    <div>Recipe</div>
-  )
+    <div className="recipe">
+      <Navbar />
+    </div>
+  );
 }
 
-export default Recipe
+export default Recipe;
