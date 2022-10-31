@@ -4,6 +4,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import YouTube from "react-youtube";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import ListAltIcon from "@mui/icons-material/ListAlt";
 
 function RecipeDescription() {
   const [recipe, setRecipe] = useState();
@@ -66,7 +67,8 @@ function RecipeDescription() {
           </div>
           <div className="recipeDescription__ingredients">
             <h2 className="recipeDescription__ingredients--title">
-              Ingredients
+              Principal Ingredients&nbsp;
+              <ListAltIcon />
             </h2>
             <ul>
               <li>1 oz of Chicken</li>
@@ -80,7 +82,8 @@ function RecipeDescription() {
           </div>
           <div className="recipeDescription__video">
             <h2 className="recipeDescription__video--title">
-              Watch the Recipe Video Here <YouTubeIcon />!
+              Watch the Recipe Video Here&nbsp;
+              <YouTubeIcon />!
             </h2>
             <YouTube videoId="kqEfk801E94" opts={opts} />
           </div>
