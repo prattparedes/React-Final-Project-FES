@@ -7,14 +7,12 @@ import RecipeDescription from "../components/ui/RecipeDescription";
 function Recipe() {
   const [recipe, setRecipe] = useState({});
   const { id } = useParams();
-  console.log(id);
 
   async function getMealData() {
     const { data } = await axios.get(
       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
     );
-    setRecipe(data);
-    console.log(data);
+    setRecipe(data.meals[0]);
   }
 
   useEffect(() => {
@@ -24,7 +22,7 @@ function Recipe() {
   return (
     <div className="recipe">
       <Navbar />
-      <RecipeDescription />
+      <RecipeDescription recipe={recipe}/>
     </div>
   );
 }

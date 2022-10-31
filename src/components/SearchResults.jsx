@@ -38,6 +38,7 @@ function SearchResults({ recipes, loading }) {
           recipes
             .map((post) => (
               <ResultCard
+                key = {post.idMeal}
                 title={post.strMeal}
                 category={post.strCategory}
                 area={post.strArea}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./RecipeDescription.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +6,8 @@ import YouTube from "react-youtube";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 
-function RecipeDescription() {
-  const [recipe, setRecipe] = useState();
+function RecipeDescription({ recipe }) {
+  const [ytId, setYtId] = useState("");
   const navigate = useNavigate();
 
   const opts = {
@@ -35,57 +35,177 @@ function RecipeDescription() {
             <h2>Search Recipes</h2>
           </div>
           <div className="recipeDescription__selected">
-            <figure className="recipe__image">
-              <img
-                src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg"
-                alt=""
-              />
-            </figure>
-            <div className="recipeDescription__description">
-              <h2 className="recipeDescription__title">Título</h2>
-              <h3 className="recipeDescription__category">Category: Chicken</h3>
-              <h3 className="recipeDescription__sub-title">Instructions</h3>
-              <p className="recipeDescription__instructions">
-                STEP 1 - MARINATING THE CHICKEN\r\nIn a bowl, add chicken, salt,
-                white pepper, ginger juice and then mix it together well.\r\nSet
-                the chicken aside.\r\nSTEP 2 - RINSE THE WHITE RICE\r\nRinse the
-                rice in a metal bowl or pot a couple times and then drain the
-                water.\r\nSTEP 2 - BOILING THE WHITE RICE\r\nNext add 8 cups of
-                water and then set the stove on high heat until it is boiling.
-                Once rice porridge starts to boil, set the stove on low heat and
-                then stir it once every 8-10 minutes for around 20-25
-                minutes.\r\nAfter 25 minutes, this is optional but you can add a
-                little bit more water to make rice porridge to make it less
-                thick or to your preference.\r\nNext add the marinated chicken
-                to the rice porridge and leave the stove on low heat for another
-                10 minutes.\r\nAfter an additional 10 minutes add the green
-                onions, sliced ginger, 1 pinch of salt, 1 pinch of white pepper
-                and stir for 10 seconds.\r\nServe the rice porridge in a
-                bowl\r\nOptional: add Coriander on top of the rice porridge.
-              </p>
-            </div>
+            {Object.keys(recipe).length === 0 ? (
+              <div className="recipeDescription__skeleton--body">
+                <div className="recipe__img--skeleton"></div>
+                <div className="recipeDescription__description-skeleton">
+                  <div className="recipe__title--skeleton"></div>
+                  <div className="recipe__category--skeleton"></div>
+                  <div className="recipe__instructions--skeleton"></div>
+                </div>
+              </div>
+            ) : (
+              <>
+                <figure className="recipe__image">
+                  <img src={recipe.strMealThumb} alt="" />
+                </figure>
+                <div className="recipeDescription__description">
+                  <h2 className="recipeDescription__title">{recipe.strMeal}</h2>
+
+                  <h3 className="recipeDescription__category">
+                    Category: {recipe.strCategory}
+                  </h3>
+
+                  <h3 className="recipeDescription__sub-title">Instructions</h3>
+                  <p className="recipeDescription__instructions">
+                    {recipe.strInstructions}
+                  </p>
+                </div>
+              </>
+            )}
           </div>
+
           <div className="recipeDescription__ingredients">
             <h2 className="recipeDescription__ingredients--title">
               Principal Ingredients&nbsp;
               <ListAltIcon />
             </h2>
-            <ul>
-              <li>1 oz of Chicken</li>
-              <li>1 oz of Chicken</li>
-              <li>1 oz of Chicken</li>
-              <li>1 oz of Chicken</li>
-              <li>1 oz of Chicken</li>
-              <li>1 oz of Chicken</li>
-              <li>1 oz of Chicken</li>
-            </ul>
+
+            {Object.keys(recipe).length === 0 ? (
+              <div className="ingredients__skeleton--list">
+                <div className="ingredients__skeleton--item"></div>
+                <div className="ingredients__skeleton--item"></div>
+                <div className="ingredients__skeleton--item"></div>
+                <div className="ingredients__skeleton--item"></div>
+                <div className="ingredients__skeleton--item"></div>
+                <div className="ingredients__skeleton--item"></div>
+                <div className="ingredients__skeleton--item"></div>
+                <div className="ingredients__skeleton--item"></div>
+              </div>
+            ) : (
+              <ul>
+                {recipe.strIngredient1 && (
+                  <li>
+                    {recipe.strMeasure1} of {recipe.strIngredient1}
+                  </li>
+                )}
+                {recipe.strIngredient2 && (
+                  <li>
+                    {recipe.strMeasure2} of {recipe.strIngredient2}
+                  </li>
+                )}
+                {recipe.strIngredient3 && (
+                  <li>
+                    {recipe.strMeasure3} of {recipe.strIngredient3}
+                  </li>
+                )}
+                {recipe.strIngredient4 && (
+                  <li>
+                    {recipe.strMeasure4} of {recipe.strIngredient4}
+                  </li>
+                )}
+                {recipe.strIngredient5 && (
+                  <li>
+                    {recipe.strMeasure5} of {recipe.strIngredient5}
+                  </li>
+                )}
+                {recipe.strIngredient6 && (
+                  <li>
+                    {recipe.strMeasure6} of {recipe.strIngredient6}
+                  </li>
+                )}
+                {recipe.strIngredient7 && (
+                  <li>
+                    {recipe.strMeasure7} of {recipe.strIngredient7}
+                  </li>
+                )}
+                {recipe.strIngredient8 && (
+                  <li>
+                    {recipe.strMeasure8} of {recipe.strIngredient8}
+                  </li>
+                )}
+                {recipe.strIngredient9 && (
+                  <li>
+                    {recipe.strMeasure9} of {recipe.strIngredient9}
+                  </li>
+                )}
+                {recipe.strIngredient10 && (
+                  <li>
+                    {recipe.strMeasure10} of {recipe.strIngredient10}
+                  </li>
+                )}
+                {recipe.strIngredient11 && (
+                  <li>
+                    {recipe.strMeasure11} of {recipe.strIngredient11}
+                  </li>
+                )}
+                {recipe.strIngredient12 && (
+                  <li>
+                    {recipe.strMeasure12} of {recipe.strIngredient12}
+                  </li>
+                )}
+                {recipe.strIngredient13 && (
+                  <li>
+                    {recipe.strMeasure13} of {recipe.strIngredient13}
+                  </li>
+                )}
+                {recipe.strIngredient14 && (
+                  <li>
+                    {recipe.strMeasure14} of {recipe.strIngredient14}
+                  </li>
+                )}
+                {recipe.strIngredient15 && (
+                  <li>
+                    {recipe.strMeasure15} of {recipe.strIngredient15}
+                  </li>
+                )}
+                {recipe.strIngredient16 && (
+                  <li>
+                    {recipe.strMeasure16} of {recipe.strIngredient16}
+                  </li>
+                )}
+                {recipe.strIngredient17 && (
+                  <li>
+                    {recipe.strMeasure17} of {recipe.strIngredient17}
+                  </li>
+                )}
+                {recipe.strIngredient18 && (
+                  <li>
+                    {recipe.strMeasure18} of {recipe.strIngredient18}
+                  </li>
+                )}
+                {recipe.strIngredient19 && (
+                  <li>
+                    {recipe.strMeasure19} of {recipe.strIngredient19}
+                  </li>
+                )}
+                {recipe.strIngredient20 && (
+                  <li>
+                    {recipe.strMeasure20} of {recipe.strIngredient20}
+                  </li>
+                )}
+              </ul>
+            )}
           </div>
           <div className="recipeDescription__video">
             <h2 className="recipeDescription__video--title">
               Watch the Recipe Video Here&nbsp;
               <YouTubeIcon />!
             </h2>
-            <YouTube videoId="kqEfk801E94" opts={opts} />
+            {Object.keys(recipe).length === 0 ? (
+              <div className="video__skeleton"></div>
+            ) : (
+              <YouTube
+                videoId={
+                  Object.keys(recipe).length === 0 ? (
+                    <></>
+                  ) : (
+                    YouTubeGetID(recipe.strYoutube)
+                  )
+                }
+                opts={opts}
+              />
+            )}
           </div>
         </div>
       </div>
