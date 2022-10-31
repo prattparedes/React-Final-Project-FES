@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import RecipeDescription from "../components/ui/RecipeDescription";
 
 function Recipe() {
   const [recipe, setRecipe] = useState({});
@@ -23,6 +24,7 @@ function Recipe() {
   return (
     <div className="recipe">
       <Navbar />
+      <RecipeDescription />
     </div>
   );
 }
