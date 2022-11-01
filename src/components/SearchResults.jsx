@@ -23,6 +23,7 @@ function SearchResults({ recipes, loading }) {
               <div className="resultCard__skeleton"></div>
               <div className="resultCard__skeleton"></div>
               <div className="resultCard__skeleton"></div>
+              <div className="resultCard__skeleton"></div>
             </>
           ) : (
             recipes
